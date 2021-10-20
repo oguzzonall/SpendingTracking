@@ -1,6 +1,5 @@
 import { Form, Input, Button } from "antd";
 import { useHistory, useLocation } from "react-router";
-import api from "../utils/api";
 import showError from "../utils/showError";
 import { Result } from "antd";
 import { LoginForm } from "../types/user";
