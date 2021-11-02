@@ -6,8 +6,7 @@ import { addCategory, deleteCategory, getCategories, updateCategory } from "../s
 import { Category, CategoryForm } from "../types/category";
 import { SketchPicker } from "react-color";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-
-type Mode = "new" | "edit" | "delete";
+import { Mode } from "../types/general";
 
 const emptyForm: CategoryForm = {
   name: "",
@@ -22,6 +21,7 @@ function Categories() {
   const [form, setForm] = useState<CategoryForm>(emptyForm);
   const [updateId, setUpdateId] = useState<number | null>(null);
   const [deleteId, setDeleteId] = useState<number | null>(null);
+
   const showModal = (mode: Mode) => {
     setIsModalVisible(true);
     setMode(mode);
