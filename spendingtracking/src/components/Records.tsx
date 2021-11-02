@@ -3,7 +3,7 @@ import { AppState } from "../store";
 import { Button, Table, Tag, Modal, Form, Input, Select, Space } from "antd";
 import { Record, RecordForm } from "../types/record";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { addRecord, getRecords } from "../store/actions/recordActions";
+import { addRecord, deleteRecord, getRecords, updateRecord } from "../store/actions/recordActions";
 import { useEffect, useState } from "react";
 import { Mode } from "../types/general";
 import { getCategories } from "../store/actions/categoryActions";
@@ -31,8 +31,8 @@ function Records() {
 
   const handleOk = () => {
     if (mode === "new") dispatch(addRecord(form));
-    // else if (mode === "edit" && typeof updateId === "number") dispatch(updateRecord(form, updateId));
-    // else if (mode === "delete" && typeof deleteId === "number") dispatch(deleteRecord(deleteId));
+    else if (mode === "edit" && typeof updateId === "number") dispatch(updateRecord(form, updateId));
+    else if (mode === "delete" && typeof deleteId === "number") dispatch(deleteRecord(deleteId));
     setIsModalVisible(false);
     setMode("new");
     setForm(emptyForm);
@@ -97,12 +97,29 @@ function Records() {
     {
       title: "Actions",
       key: "actions",
-      render: (text: string, record: Record) => (
-        <Space>
-          <EditOutlined style={{ color: "#0390fc" }} onClick={() => {}} />
-          <DeleteOutlined style={{ color: "#c20808" }} onClick={() => {}} />
-        </Space>
-      ),
+      render: (text: string, record: Record) => {
+        const { title, amount } = record;
+        const category_id = record.category.id;
+        return (
+          <Space>
+            <EditOutlined
+              style={{ color: "#0390fc" }}
+              onClick={() => {
+                showModal("edit");
+                setForm({ title, amount, category_id });
+                setUpdateId(record.id);
+              }}
+            />
+            <DeleteOutlined
+              style={{ color: "#c20808" }}
+              onClick={() => {
+                showModal("delete");
+                setDeleteId(record.id);
+              }}
+            />
+          </Space>
+        );
+      },
     },
   ];
 
