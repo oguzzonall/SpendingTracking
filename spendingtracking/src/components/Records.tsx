@@ -15,7 +15,7 @@ const emptyForm: RecordForm = {
 };
 
 function Records() {
-  const { data, loading, error } = useSelector((state: AppState) => state.records);
+  const { data, loading } = useSelector((state: AppState) => state.records);
   const { data: categories } = useSelector((state: AppState) => state.categories);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -140,7 +140,7 @@ function Records() {
         </Button>
       </div>
       <Modal
-        title={mode == "new" ? "Create New Record" : mode === "edit" ? "Update Record" : "Delete Record"}
+        title={mode === "new" ? "Create New Record" : mode === "edit" ? "Update Record" : "Delete Record"}
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -169,7 +169,11 @@ function Records() {
                   Select a category
                 </Select.Option>
                 {categories.map((category) => {
-                  return <Select.Option value={category.id}>{category.name}</Select.Option>;
+                  return (
+                    <Select.Option value={category.id} key={category.id}>
+                      {category.name}
+                    </Select.Option>
+                  );
                 })}
               </Select>
             </Form.Item>
@@ -178,7 +182,7 @@ function Records() {
           <>Are you sure?</>
         ) : null}
       </Modal>
-      <Table loading={loading} columns={columns} dataSource={data} />
+      <Table loading={loading} columns={columns} dataSource={data} rowKey="id" />
     </>
   );
 }

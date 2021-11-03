@@ -1,4 +1,18 @@
 import { ThunkDispatch } from "redux-thunk";
+import {
+  ADD_RECORD_ERROR,
+  ADD_RECORD_START,
+  ADD_RECORD_SUCCESS,
+  DELETE_RECORD_ERROR,
+  DELETE_RECORD_START,
+  DELETE_RECORD_SUCCESS,
+  GET_RECORDS_ERROR,
+  GET_RECORDS_START,
+  GET_RECORDS_SUCCESS,
+  UPDATE_RECORD_ERROR,
+  UPDATE_RECORD_START,
+  UPDATE_RECORD_SUCCESS,
+} from "./actionTypes";
 import { Category } from "./category";
 
 export interface RecordState {
@@ -23,55 +37,55 @@ export interface RecordForm {
 }
 
 interface GET_START {
-  type: "GET_RECORDS_START";
+  type: typeof GET_RECORDS_START;
 }
 
 interface GET_SUCCESS {
-  type: "GET_RECORDS_SUCCESS";
+  type: typeof GET_RECORDS_SUCCESS;
   payload: Record[];
 }
 
 interface GET_ERROR {
-  type: "GET_RECORDS_ERROR";
+  type: typeof GET_RECORDS_ERROR;
 }
 
 interface ADD_START {
-  type: "ADD_RECORD_START";
+  type: typeof ADD_RECORD_START;
 }
 
 interface ADD_SUCCESS {
-  type: "ADD_RECORD_SUCCESS";
+  type: typeof ADD_RECORD_SUCCESS;
   payload: Record;
 }
 
 interface ADD_ERROR {
-  type: "ADD_RECORD_ERROR";
+  type: typeof ADD_RECORD_ERROR;
 }
 
 interface UPDATE_START {
-  type: "UPDATE_RECORD_START";
+  type: typeof UPDATE_RECORD_START;
 }
 
 interface UPDATE_SUCCESS {
-  type: "UPDATE_RECORD_SUCCESS";
+  type: typeof UPDATE_RECORD_SUCCESS;
   payload: Record;
 }
 
 interface UPDATE_ERROR {
-  type: "UPDATE_RECORD_ERROR";
+  type: typeof UPDATE_RECORD_ERROR;
 }
 
 interface DELETE_START {
-  type: "DELETE_RECORD_START";
+  type: typeof DELETE_RECORD_START;
 }
 
 interface DELETE_SUCCESS {
-  type: "DELETE_RECORD_SUCCESS";
+  type: typeof DELETE_RECORD_SUCCESS;
   payload: Record["id"];
 }
 
 interface DELETE_ERROR {
-  type: "DELETE_RECORD_ERROR";
+  type: typeof DELETE_RECORD_ERROR;
 }
 
 export type RecordAction =

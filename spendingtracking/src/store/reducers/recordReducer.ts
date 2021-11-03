@@ -1,3 +1,17 @@
+import {
+  ADD_RECORD_ERROR,
+  ADD_RECORD_START,
+  ADD_RECORD_SUCCESS,
+  DELETE_RECORD_ERROR,
+  DELETE_RECORD_START,
+  DELETE_RECORD_SUCCESS,
+  GET_RECORDS_ERROR,
+  GET_RECORDS_START,
+  GET_RECORDS_SUCCESS,
+  UPDATE_RECORD_ERROR,
+  UPDATE_RECORD_START,
+  UPDATE_RECORD_SUCCESS,
+} from "../../types/actionTypes";
 import { RecordAction, RecordState } from "../../types/record";
 
 const defaultState: RecordState = {
@@ -8,33 +22,33 @@ const defaultState: RecordState = {
 
 const recordReducer = (state: RecordState = defaultState, action: RecordAction): RecordState => {
   switch (action.type) {
-    case "GET_RECORDS_START":
+    case GET_RECORDS_START:
       return { ...state, loading: true, error: "" };
-    case "GET_RECORDS_SUCCESS":
+    case GET_RECORDS_SUCCESS:
       return { ...state, loading: false, data: action.payload };
-    case "GET_RECORDS_ERROR":
+    case GET_RECORDS_ERROR:
       return { ...state, loading: false, error: "Error fetching records" };
-    case "ADD_RECORD_START":
+    case ADD_RECORD_START:
       return { ...state, loading: true, error: "" };
-    case "ADD_RECORD_SUCCESS":
+    case ADD_RECORD_SUCCESS:
       return { ...state, loading: false, data: [action.payload, ...state.data] };
-    case "ADD_RECORD_ERROR":
+    case ADD_RECORD_ERROR:
       return { ...state, loading: false, error: "Error adding record" };
-    case "UPDATE_RECORD_START":
+    case UPDATE_RECORD_START:
       return { ...state, loading: true, error: "" };
-    case "UPDATE_RECORD_SUCCESS":
+    case UPDATE_RECORD_SUCCESS:
       return {
         ...state,
         loading: false,
         data: state.data.map((record) => (record.id === action.payload.id ? action.payload : record)),
       };
-    case "UPDATE_RECORD_ERROR":
-      return { ...state, loading: false, error: "Error updating record" }; 
-    case "DELETE_RECORD_START":
+    case UPDATE_RECORD_ERROR:
+      return { ...state, loading: false, error: "Error updating record" };
+    case DELETE_RECORD_START:
       return { ...state, loading: true, error: "" };
-    case "DELETE_RECORD_SUCCESS":
+    case DELETE_RECORD_SUCCESS:
       return { ...state, loading: false, data: state.data.filter((record) => record.id !== action.payload) };
-    case "DELETE_RECORD_ERROR":
+    case DELETE_RECORD_ERROR:
       return { ...state, loading: false, error: "Error deleting record" };
     default:
       return state;
