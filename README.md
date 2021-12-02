@@ -6,7 +6,11 @@ React - Harcama Takip Uygulaması
 - React 
 - TypeScript 
 - Redux 
+- Redux-thunk
+- react-router-dom
 - Ant Design 
 - Material UI 
 - Formik 
-- Yup 
+- Yup
+- axios
+- react-color
