@@ -29,6 +29,9 @@ function AppHeader() {
             <Menu.Item key="/categories">
               <Link to="/categories">Kategori</Link>
             </Menu.Item>
+            <Menu.Item key="/faturatahsilat">
+              <Link to="/faturatahsilat">Fatura Tahsilat</Link>
+            </Menu.Item>
             <Menu.Item key="/logout">
               <Link to="/logout">Çıkış</Link>
             </Menu.Item>

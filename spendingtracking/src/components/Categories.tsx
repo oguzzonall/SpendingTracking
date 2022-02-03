@@ -103,7 +103,7 @@ function Categories() {
           </Button>
         </div>
         <Modal
-          title={mode == "new" ? "Create New Category" : mode === "edit" ? "Update Category" : "Delete Category"}
+          title={mode === "new" ? "Create New Category" : mode === "edit" ? "Update Category" : "Delete Category"}
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
